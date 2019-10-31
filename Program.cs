@@ -208,36 +208,64 @@ namespace Файл
                 Console.ReadKey();
             }
             */
-            6 int[,] field = new int[5,5];
-            Random rnd = new Random ();
+            int[,] field = new int[3, 3];
+            bool z = true;
+            int cnt0 = 0;
+            int cnt1 = 0;
+            int k = -1;
             int x = 0;
             int y = 0;
-            int cnt = 0;
-            bool z = true;
-            for (int i = 0; i < 5; i++)
+            int n = 0;
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 3; j++)
                 {
-                    field[i, j] = rnd.Next(0, 2);
-                    Console.Write("{0}\t", field[i,j]);
-                    if
+                    field[i, j] = -1;
+                    Console.Write("{0}\t", field[i, j]);
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
             while (z)
-            {
-                Console.Write("Ввежите координату строки");
+            {   n++;
+                Console.Write("Введите координату строки ");
                 x = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Введите координату ряда");
+                Console.Write("Введите координату ряда ");
                 y = Convert.ToInt32(Console.ReadLine());
-                if(field[x,y] == 1 )
+                field[x, y] =1;
+                Console.Write("Введите координату строки ");
+                x = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите координату ряда ");
+                y = Convert.ToInt32(Console.ReadLine());
+                field[x, y] = 0;
+
+               for (int l = 0; l < 3; l++)
+               {
+                    for(int p = 0; p < 3; p++)
+                    if (field [x,y] == 0)
+                    {
+                        cnt0++;
+                    }
+
+               }
+                
+               
+                for (int p = 0; p < 3; p++)
+                {
+                    for (int l = 0; l < 3; l++)
+                    {
+                        
+                        Console.Write("{0}\t", field[p, l]);
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+                if (n == 2)
                 {
                     z = false;
-                    Console.Write("Вы проиграли!");
                 }
             }
-            
+            Console.WriteLine();
             Console.ReadKey();
         }
     }

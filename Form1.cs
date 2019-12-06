@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         int[,] field = new int[5, 5];
+        int[,] arr = new int[5, 5];
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +26,15 @@ namespace WindowsFormsApp1
             View1.Rows[2].HeaderCell.Value = "2";
             View1.Rows[3].HeaderCell.Value = "3";
             View1.Rows[4].HeaderCell.Value = "4";
-            int[,] field = new int[5, 5];
+            bool z;
+            for (int i = 0; i <5; i++)
+            {
+                for (int j =0; j<5; j++) 
+                {
+                    arr[i,j]= 0;
+                }
+            }
+            
             Random rnd = new Random();
             for (int i = 0; i < 5; i++)
             {
@@ -34,7 +43,7 @@ namespace WindowsFormsApp1
                     field[i, j] = rnd.Next(0, 2);
                 }
             }
-            for (int i = 0; i <5; i++ )
+            for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
@@ -51,23 +60,23 @@ namespace WindowsFormsApp1
 
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
-
-        }
-
-        private void View1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+        
         }
 
         private void View1_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-           
-
-            if (View1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "1")
+            if (arr[e.RowIndex, e.ColumnIndex] != 1)
+            {
+                if (field[e.RowIndex, e.ColumnIndex] == 0)
                 {
-                    
-                    Console.Write("Вы проиграли!");
+                arr[e.RowIndex, e.ColumnIndex] = 1;///field[e.RowIndex, e.ColumnIndex];
                 }
+
+            }
+            
+            if(field[e.RowIndex,e.ColumnIndex] == 1)           
+            {
+                label2.Visible = true; 
             }
         }
     }
